@@ -109,7 +109,15 @@
 		// We use this instead of explicitly saying the URL is localhost:3001 because the url will change when we deploy.
 		var currentURL = window.location.origin;
 
-	    $.post(currentURL + "/api/tables", newReservation,
+
+		$.ajax({
+			url: "",
+			method: "GET"
+		}).then(function ( response ) {
+			// do something with response
+		});
+
+	    $.post(currentURL + "/api/tables", table,
 	    function(data){
 
 	    	// If a table is available... tell user they are booked.
@@ -117,7 +125,7 @@
 	    		alert("Yay! You are officially booked!")
 	    	}
 
-	    	// If a table is available... tell user they on the waiting list.
+	    	// If a table isn't available... tell user they on the waiting list.
 	    	if(data == false){
 	    		alert("Sorry you are on the wait list")
 	    	}
